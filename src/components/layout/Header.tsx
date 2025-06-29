@@ -15,10 +15,10 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">🔧</span>
+                <span className="text-white font-bold text-lg">💍</span>
               </div>
               <h1 className="text-xl font-bold text-gray-900 hidden sm:block">
-                工具集合站
+                婚礼策划师工具
               </h1>
             </Link>
           </div>
@@ -43,7 +43,7 @@ const Header = () => {
                   : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
             >
-              所有工具
+              专业工具
             </Link>
           </nav>
 
@@ -52,6 +52,7 @@ const Header = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+              aria-label="打开菜单"
             >
               <svg
                 className="h-6 w-6"
@@ -102,7 +103,7 @@ const Header = () => {
               }`}
               onClick={() => setIsMenuOpen(false)}
             >
-              所有工具
+              专业工具
             </Link>
           </div>
         )}

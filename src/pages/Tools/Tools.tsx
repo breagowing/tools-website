@@ -45,10 +45,10 @@ const Tools = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🔧 所有工具
+            💍 专业工具
           </h1>
-          <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
-            发现和使用各种实用的在线工具，提高您的工作效率
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            发现和使用各种专业的婚庆策划工具，让您的婚礼策划更高效
           </p>
         </div>
 
