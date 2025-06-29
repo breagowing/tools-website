@@ -14,15 +14,20 @@ const Home = () => {
         const categories = await mockService.getTools()
         // 获取前3个分类作为推荐工具
         setFeaturedTools(categories.slice(0, 3))
-      } catch (error) {
-        console.error('Failed to fetch featured tools:', error)
-      } finally {
+              } catch (error) {
+          console.error('Failed to fetch featured tools:', error)
+        } finally {
         setLoading(false)
       }
     }
 
     fetchFeaturedTools()
   }, [])
+
+  // 获取要显示的工具
+  const toolsToShow = featuredTools.flatMap(category => 
+    category.tools.slice(0, 2)
+  )
 
   return (
     <div className="animate-fade-in">
@@ -68,6 +73,8 @@ const Home = () => {
             </p>
           </div>
 
+
+
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map(i => (
@@ -76,13 +83,21 @@ const Home = () => {
                 </div>
               ))}
             </div>
+          ) : toolsToShow.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-6xl mb-4">🔍</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                没有找到推荐工具
+              </h3>
+              <p className="text-gray-600">
+                工具数据可能未正确加载
+              </p>
+            </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredTools.map(category => 
-                category.tools.slice(0, 2).map(tool => (
-                  <ToolCard key={tool.id} tool={tool} />
-                ))
-              )}
+              {toolsToShow.map(tool => (
+                <ToolCard key={tool.id} tool={tool} />
+              ))}
             </div>
           )}
         </div>
