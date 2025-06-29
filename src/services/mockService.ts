@@ -136,6 +136,16 @@ const mockData: ToolCategory[] = [
         icon: '📸',
         path: '/tools/photo-resizer',
         tags: ['照片', '尺寸', '婚纱照']
+      },
+      {
+        id: 'media-downloader',
+        name: '婚礼素材下载器',
+        description: '从小红书、抖音等平台下载婚礼案例图片和视频素材',
+        category: 'design',
+        icon: '⬇️',
+        path: '/tools/media-downloader',
+        featured: true,
+        tags: ['素材', '下载', '小红书', '抖音', '视频', '图片']
       }
     ]
   },
