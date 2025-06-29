@@ -1,160 +1,188 @@
 import { ToolCategory } from '../types/tool'
 
-// Mock数据
+// 婚庆策划师专用工具数据
 const mockData: ToolCategory[] = [
   {
-    id: 'text',
-    name: '文本工具',
-    icon: '📝',
-    description: '各种文本处理和格式化工具',
+    id: 'planning',
+    name: '婚礼策划',
+    icon: '💍',
+    description: '婚礼策划和时间管理工具',
     tools: [
       {
-        id: 'json-formatter',
-        name: 'JSON格式化',
-        description: '格式化和验证JSON数据，支持压缩和美化',
-        category: 'text',
-        icon: '🔧',
-        path: '/tools/json-formatter',
+        id: 'wedding-budget-calculator',
+        name: '婚礼预算计算器',
+        description: '智能计算婚礼各项费用，合理分配预算',
+        category: 'planning',
+        icon: '💰',
+        path: '/tools/wedding-budget-calculator',
         featured: true,
-        tags: ['JSON', '格式化', '验证']
+        tags: ['预算', '费用', '策划']
       },
       {
-        id: 'base64-encoder',
-        name: 'Base64编解码',
-        description: 'Base64编码和解码工具，支持文本和文件',
-        category: 'text',
-        icon: '🔐',
-        path: '/tools/base64-encoder',
-        tags: ['Base64', '编码', '解码']
+        id: 'wedding-timeline',
+        name: '婚礼时间线规划',
+        description: '制定详细的婚礼筹备时间计划表',
+        category: 'planning',
+        icon: '📅',
+        path: '/tools/wedding-timeline',
+        featured: true,
+        tags: ['时间线', '计划', '筹备']
       },
       {
-        id: 'url-encoder',
-        name: 'URL编解码',
-        description: 'URL编码和解码，处理特殊字符',
-        category: 'text',
-        icon: '🌐',
-        path: '/tools/url-encoder',
-        tags: ['URL', '编码', '解码']
+        id: 'guest-calculator',
+        name: '宾客数量计算',
+        description: '根据场地和预算计算合适的宾客人数',
+        category: 'planning',
+        icon: '👥',
+        path: '/tools/guest-calculator',
+        tags: ['宾客', '人数', '场地']
       },
       {
-        id: 'markdown-converter',
-        name: 'Markdown转换',
-        description: 'Markdown与HTML互相转换',
-        category: 'text',
-        icon: '📄',
-        path: '/tools/markdown-converter',
-        isComingSoon: true,
-        tags: ['Markdown', 'HTML', '转换']
+        id: 'wedding-checklist',
+        name: '婚礼清单生成器',
+        description: '生成详细的婚礼筹备清单，确保不遗漏',
+        category: 'planning',
+        icon: '📋',
+        path: '/tools/wedding-checklist',
+        tags: ['清单', '筹备', '提醒']
       }
     ]
   },
   {
-    id: 'image',
-    name: '图片工具',
-    icon: '🖼️',
-    description: '图片处理和优化工具',
-    tools: [
-      {
-        id: 'image-compressor',
-        name: '图片压缩',
-        description: '在线压缩图片，减少文件大小',
-        category: 'image',
-        icon: '📦',
-        path: '/tools/image-compressor',
-        featured: true,
-        tags: ['图片', '压缩', '优化']
-      },
-      {
-        id: 'image-converter',
-        name: '图片格式转换',
-        description: '支持JPG、PNG、WebP等格式互转',
-        category: 'image',
-        icon: '🔄',
-        path: '/tools/image-converter',
-        isComingSoon: true,
-        tags: ['图片', '转换', '格式']
-      },
-      {
-        id: 'qr-generator',
-        name: '二维码生成',
-        description: '生成各种样式的二维码',
-        category: 'image',
-        icon: '📱',
-        path: '/tools/qr-generator',
-        tags: ['二维码', '生成', 'QR码']
-      }
-    ]
-  },
-  {
-    id: 'developer',
-    name: '开发工具',
-    icon: '⚙️',
-    description: '面向开发者的实用工具',
-    tools: [
-      {
-        id: 'color-picker',
-        name: '颜色选择器',
-        description: '颜色选择和格式转换工具',
-        category: 'developer',
-        icon: '🎨',
-        path: '/tools/color-picker',
-        featured: true,
-        tags: ['颜色', '选择器', 'CSS']
-      },
-      {
-        id: 'regex-tester',
-        name: '正则表达式测试',
-        description: '测试和验证正则表达式',
-        category: 'developer',
-        icon: '🔍',
-        path: '/tools/regex-tester',
-        tags: ['正则', '测试', '验证']
-      },
-      {
-        id: 'hash-generator',
-        name: 'Hash生成器',
-        description: '生成MD5、SHA1、SHA256等Hash值',
-        category: 'developer',
-        icon: '#️⃣',
-        path: '/tools/hash-generator',
-        tags: ['Hash', 'MD5', 'SHA256']
-      },
-      {
-        id: 'timestamp-converter',
-        name: '时间戳转换',
-        description: '时间戳与日期时间互相转换',
-        category: 'developer',
-        icon: '⏰',
-        path: '/tools/timestamp-converter',
-        tags: ['时间戳', '日期', '转换']
-      }
-    ]
-  },
-  {
-    id: 'calculator',
+    id: 'calculation',
     name: '计算工具',
     icon: '🔢',
-    description: '各种计算和换算工具',
+    description: '婚礼相关的各种计算工具',
     tools: [
       {
-        id: 'unit-converter',
-        name: '单位转换',
-        description: '长度、重量、温度等单位转换',
-        category: 'calculator',
-        icon: '📏',
-        path: '/tools/unit-converter',
-        isComingSoon: true,
-        tags: ['单位', '转换', '计算']
+        id: 'seating-calculator',
+        name: '座位安排计算',
+        description: '根据宾客关系和桌型计算最佳座位安排',
+        category: 'calculation',
+        icon: '🪑',
+        path: '/tools/seating-calculator',
+        featured: true,
+        tags: ['座位', '安排', '桌型']
       },
       {
-        id: 'percentage-calculator',
-        name: '百分比计算',
-        description: '各种百分比计算工具',
-        category: 'calculator',
-        icon: '%',
-        path: '/tools/percentage-calculator',
+        id: 'food-calculator',
+        name: '餐饮用量计算',
+        description: '计算婚宴所需的菜品、酒水、甜品数量',
+        category: 'calculation',
+        icon: '🍽️',
+        path: '/tools/food-calculator',
+        tags: ['餐饮', '用量', '酒水']
+      },
+      {
+        id: 'flower-calculator',
+        name: '花材用量计算',
+        description: '计算手捧花、胸花、装饰花等所需花材',
+        category: 'calculation',
+        icon: '🌸',
+        path: '/tools/flower-calculator',
+        tags: ['花材', '装饰', '手捧花']
+      },
+      {
+        id: 'venue-calculator',
+        name: '场地面积计算',
+        description: '根据宾客数量计算所需场地面积',
+        category: 'calculation',
+        icon: '🏛️',
+        path: '/tools/venue-calculator',
         isComingSoon: true,
-        tags: ['百分比', '计算', '数学']
+        tags: ['场地', '面积', '容量']
+      }
+    ]
+  },
+  {
+    id: 'design',
+    name: '设计工具',
+    icon: '🎨',
+    description: '婚礼视觉设计和配色工具',
+    tools: [
+      {
+        id: 'wedding-color-palette',
+        name: '婚礼配色方案',
+        description: '生成专业的婚礼主题配色方案',
+        category: 'design',
+        icon: '🌈',
+        path: '/tools/wedding-color-palette',
+        featured: true,
+        tags: ['配色', '主题', '色彩']
+      },
+      {
+        id: 'invitation-designer',
+        name: '邀请函设计助手',
+        description: '设计和预览婚礼邀请函样式',
+        category: 'design',
+        icon: '💌',
+        path: '/tools/invitation-designer',
+        tags: ['邀请函', '设计', '模板']
+      },
+      {
+        id: 'qr-invitation',
+        name: '电子请柬二维码',
+        description: '生成电子婚礼邀请函二维码',
+        category: 'design',
+        icon: '📱',
+        path: '/tools/qr-invitation',
+        tags: ['二维码', '电子请柬', '分享']
+      },
+      {
+        id: 'photo-resizer',
+        name: '婚纱照尺寸调整',
+        description: '调整婚纱照到标准尺寸，适配各种用途',
+        category: 'design',
+        icon: '📷',
+        path: '/tools/photo-resizer',
+        isComingSoon: true,
+        tags: ['照片', '尺寸', '婚纱照']
+      }
+    ]
+  },
+  {
+    id: 'document',
+    name: '文档工具',
+    icon: '📄',
+    description: '婚礼文档和合同管理工具',
+    tools: [
+      {
+        id: 'contract-generator',
+        name: '婚庆合同生成器',
+        description: '生成标准的婚庆服务合同模板',
+        category: 'document',
+        icon: '📜',
+        path: '/tools/contract-generator',
+        tags: ['合同', '法律', '服务']
+      },
+      {
+        id: 'vow-generator',
+        name: '婚礼誓词助手',
+        description: '帮助新人创作个性化的婚礼誓词',
+        category: 'document',
+        icon: '💕',
+        path: '/tools/vow-generator',
+        tags: ['誓词', '创作', '个性化']
+      },
+      {
+        id: 'vendor-list',
+        name: '供应商清单管理',
+        description: '管理和组织婚礼供应商联系信息',
+        category: 'document',
+        icon: '📞',
+        path: '/tools/vendor-list',
+        isComingSoon: true,
+        tags: ['供应商', '联系人', '管理']
+      },
+      {
+        id: 'gift-tracker',
+        name: '礼金记录管理',
+        description: '记录和管理婚礼礼金，生成感谢名单',
+        category: 'document',
+        icon: '🎁',
+        path: '/tools/gift-tracker',
+        isComingSoon: true,
+        tags: ['礼金', '记录', '感谢']
       }
     ]
   }
