@@ -1,5 +1,18 @@
 import { useState, useCallback, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { 
+  PieChart, 
+  Pie, 
+  Cell, 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer 
+} from 'recharts'
 
 // 预算分类接口
 interface BudgetCategory {
@@ -67,6 +80,7 @@ const BudgetCalculator = () => {
   const [totalBudget, setTotalBudget] = useState<number>(100000)
   const [categories, setCategories] = useState<BudgetCategory[]>(defaultCategories)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [chartType, setChartType] = useState<'pie' | 'bar'>('pie')
 
   // 计算各项费用
   const calculateAmounts = useCallback(() => {
@@ -226,8 +240,116 @@ const BudgetCalculator = () => {
             </div>
           </div>
 
-          {/* 右侧：预算分配详情 */}
-          <div className="lg:col-span-2">
+          {/* 右侧：数据可视化和预算分配详情 */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* 数据可视化区域 */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-lg font-semibold text-gray-900">📊 预算可视化</h3>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => setChartType('pie')}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      chartType === 'pie'
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    🥧 饼图
+                  </button>
+                  <button
+                    onClick={() => setChartType('bar')}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      chartType === 'bar'
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    📊 柱状图
+                  </button>
+                </div>
+              </div>
+
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  {chartType === 'pie' ? (
+                    <PieChart>
+                      <Pie
+                        data={calculatedAmounts}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, percentage }) => `${name} ${percentage}%`}
+                        outerRadius={100}
+                        fill="#8884d8"
+                        dataKey="amount"
+                      >
+                        {calculatedAmounts.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip 
+                        formatter={(value: number, name: string) => [formatAmount(value), '金额']}
+                        labelFormatter={(label: string) => `分类: ${label}`}
+                      />
+                      <Legend />
+                    </PieChart>
+                  ) : (
+                    <BarChart
+                      data={calculatedAmounts}
+                      margin={{
+                        top: 20,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis 
+                        dataKey="name" 
+                        angle={-45}
+                        textAnchor="end"
+                        height={100}
+                        fontSize={12}
+                      />
+                      <YAxis 
+                        tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
+                      />
+                      <Tooltip
+                        formatter={(value: number) => [formatAmount(value), '金额']}
+                        labelFormatter={(label: string) => `分类: ${label}`}
+                      />
+                      <Bar 
+                        dataKey="amount" 
+                        fill="#3B82F6"
+                        radius={[4, 4, 0, 0]}
+                      >
+                        {calculatedAmounts.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  )}
+                </ResponsiveContainer>
+              </div>
+
+              {/* 图表说明 */}
+              <div className="mt-4 flex flex-wrap gap-3">
+                {calculatedAmounts.map((category) => (
+                  <div key={category.id} className="flex items-center">
+                    <div 
+                      className="w-3 h-3 rounded-full mr-2"
+                      style={{ backgroundColor: category.color }}
+                    ></div>
+                    <span className="text-sm text-gray-600">
+                      {category.icon} {category.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 预算分配详情 */}
             <div className="bg-white rounded-xl shadow-sm p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-lg font-semibold text-gray-900">💎 预算分配明细</h3>
