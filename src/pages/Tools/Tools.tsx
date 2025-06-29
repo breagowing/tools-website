@@ -33,13 +33,11 @@ const Tools = () => {
   // 过滤分类
   const filteredCategories = selectedCategory === 'all' 
     ? categories 
-    : categories.filter(cat => cat.id === selectedCategory)
+    : categories.filter((cat: ToolCategory) => cat.id === selectedCategory)
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
   }
-
-  const allCategoryIds = categories.map(cat => cat.id)
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -85,7 +83,7 @@ const Tools = () => {
               >
                 全部
               </button>
-              {categories.map(category => (
+              {categories.map((category: ToolCategory) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
@@ -123,7 +121,7 @@ const Tools = () => {
           </div>
         ) : (
           <div className="space-y-12">
-            {filteredCategories.map(category => (
+            {filteredCategories.map((category: ToolCategory) => (
               <div key={category.id} className="animate-slide-up">
                 <div className="flex items-center mb-6">
                   <span className="text-3xl mr-3" role="img" aria-label={category.name}>
